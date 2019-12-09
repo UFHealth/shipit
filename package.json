@@ -1,0 +1,17 @@
+{
+  "name": "@ufhealth/shipit",
+  "version": "0.0.1",
+  "description": "Release stuff real easy",
+  "license": "MIT",
+  "author": "UFHealth Web Services <webservices@ahc.ufl.edu>",
+  "contributors": [
+    "Kyle Tucker <k.tucker@ufl.edu>"
+  ],
+  "bin": {
+    "shipit": "./cli.js"
+  },
+  "dependencies": {
+    "meow": "^6.0.0"
+  },
+  "devDependencies": {}
+}
