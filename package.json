@@ -8,10 +8,23 @@
     "Kyle Tucker <k.tucker@ufl.edu>"
   ],
   "bin": {
-    "shipit": "./cli.js"
+    "logit": "./bin/logit.js",
+    "shipit": "./bin/shipit.js"
   },
   "dependencies": {
-    "meow": "^6.0.0"
+    "cosmiconfig": "^6.0.0",
+    "glob": "^7.1.6",
+    "lodash.merge": "^4.6.2",
+    "minimist": "^1.2.0",
+    "schema-utils": "^2.6.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "jest": "^24.9.0"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+    "testMatch": ["**/test/*.js"]
+  }
 }
