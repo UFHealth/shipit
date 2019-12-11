@@ -1,0 +1,29 @@
+{
+  "description": "Shipit configuration",
+  "type": "object",
+  "properties": {
+    "source": {
+      "description": "Path to changelog source directory",
+      "type": "string",
+      "default": "`${process.cwd()}/resources/changelog`"
+    },
+    "destination": {
+      "decription": "Path to CHANGELOG.md",
+      "type": "string",
+      "default": "`${process.cwd()}/CHANGELOG.md"
+    },
+    "overwrite": {
+      "description": "Whether to overwrite an existing changelog source (by default, new entries will be appended)",
+      "type": "boolean",
+      "default": false
+    },
+    "bumpFiles": {
+      "description": "List of files to check when replacing version strings",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}
