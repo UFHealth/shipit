@@ -12,11 +12,16 @@
     "shipit": "./bin/shipit.js"
   },
   "dependencies": {
+    "chalk": "^3.0.0",
     "cosmiconfig": "^6.0.0",
+    "fs-extra": "^8.1.0",
     "glob": "^7.1.6",
+    "lodash.isempty": "^4.4.0",
     "lodash.merge": "^4.6.2",
+    "lodash.mergewith": "^4.6.2",
     "minimist": "^1.2.0",
-    "schema-utils": "^2.6.1"
+    "schema-utils": "^2.6.1",
+    "yaml": "^1.7.2"
   },
   "devDependencies": {
     "jest": "^24.9.0"
@@ -25,6 +30,9 @@
     "test": "jest"
   },
   "jest": {
-    "testMatch": ["**/test/*.js"]
+    "verbose": true,
+    "testMatch": [
+      "**/test/*.js"
+    ]
   }
 }
