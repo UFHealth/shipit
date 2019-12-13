@@ -12,7 +12,7 @@ const {
   clearSources,
   generateMarkdown,
   getCurrentVersion,
-  getLoggedChanges,
+  parseSources,
   updateChangelog,
 } = require('../lib/api')
 
@@ -45,8 +45,8 @@ const main = async (argv, config) => {
   const dryRun = argv['dry-run'] || false
 
   // Extract changelog data
-  const loggedChanges = await getLoggedChanges(config)
-  logger.debug(`Changes:\n\n`)
+  const loggedChanges = await parseSources(config.source)
+  logger.debug(`Changes:`)
     .inspect(loggedChanges, true)
 
   // Convert to Markdown
@@ -55,7 +55,7 @@ const main = async (argv, config) => {
 
   // Write to CHANGELOG.md
   if (!dryRun) {
-    const changelogUpdated = await updateChangelog(changelogContent, config)
+    const changelogUpdated = await updateChangelog(changelogContent, config.destination)
   } else {
     const changelogUpdated = false
   }
@@ -64,20 +64,25 @@ const main = async (argv, config) => {
 
   // If successful, remove changelog source files
   if (changelogUpdated) {
-    await clearSources(config)
+    await clearSources(config.source)
   }
+
+  logger.message(`Version bumping coming soon...`)
+
+  return 0
+  // ---
 
   // Find current package version
   const currentVersion = await getCurrentVersion()
   logger.debug(`Bumping version from ${currentVersion} -> ${version}...`)
 
   // Run version bump replacements
-  await Promise.all(Object.keys(config.bump).map(async (path) => {
-    const replacement = config.bump[path]
+  await Promise.all(Object.keys(config.bump).map(async (bumpPath) => {
+    const replacement = config.bump[bumpPath]
     if (!dryRun) {
-      await bumpVersion(path, config.bump[path], currentVersion, version)
+      await bumpVersion(bumpPath, config.bump[bumpPath], currentVersion, version)
     }
-    logger.success(`Bumped version in ${chalk.magenta(path)}`)
+    logger.success(`Bumped version in ${chalk.magenta(bumpPath)}`)
   }))
 
   return 0

@@ -16,7 +16,10 @@
       "type": "object",
       "patternProperties": {
         "^\\/?([a-z0-9\\. \\-_]+\/)*[a-z0-9\\. \\-_]+$": {
-          "type": "string"
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       },
       "additionalProperties": false
