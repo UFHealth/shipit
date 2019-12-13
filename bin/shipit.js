@@ -1,45 +1,90 @@
 #!/usr/bin/env node
 const chalk = require('chalk')
-const minimist = require('minimist')
 
-const getConfig = require('../src/config')
-const { loadSources, generateMarkdown, updateChangelog } = require('../src/ship')
-const { error, usage, version } = require('../src/cli')
+const {
+  Logger,
+  run,
+  UsageError,
+} = require('../lib/cli-helpers')
 
-const argv = minimist(process.argv.slice(2), {
-  alias: {
-    'bump-files': ['b', 'bumpFiles']
+const {
+  bumpPackageJson,
+  bumpVersion,
+  clearSources,
+  generateMarkdown,
+  getCurrentVersion,
+  parseSources,
+  updateChangelog,
+} = require('../lib/api')
+
+// ---------------------------------------------------------------------------------------------
+
+const helpText = `
+  Compile changelog entries, write them to CHANGELOG.md, and bump version strings.
+
+  Usage:
+    $ shipit <version> [options]
+
+  Arguments:
+    version  The next version of your package.
+
+  Options:
+    --help     Display this help message.
+    --version  Print the current shipit version.
+    --dry-run  See what would happen if you ran this command IRL.
+`
+
+const main = async (argv, config) => {
+  // Grab version
+  const version = argv._[0] || false
+  if (!version) {
+    throw new UsageError('...y u no give version?')
   }
-})
 
-if (argv.help) {
-  process.stderr.write(usage())
-  process.exit(0)
-} else if (argv.version) {
-  process.stdout.write(version())
-  process.exit(0)
-}
+  const logger = new Logger(argv)
+  const debug = argv.debug || false
+  const dryRun = argv['dry-run'] || false
 
-const main = async (argv) => {
-  try {
-    if (!argv._.length) {
-      process.stderr.write(usage())
-      process.exit(1)
+  // Find current package version
+  const currentVersion = await getCurrentVersion()
+  if (currentVersion === version) {
+    throw new Error(`${version} is the current version tho`)
+  }
+
+  // Extract changelog data
+  const loggedChanges = await parseSources(config.source)
+  logger.debug(`Changes:`)
+    .inspect(loggedChanges, true)
+
+  // Convert to Markdown
+  const changelogContent = await generateMarkdown(loggedChanges, version)
+  logger.debug(`Generated Markdown:\n\n${changelogContent}`)
+
+  // Write to CHANGELOG.md
+  if (!dryRun) {
+    const bytesWritten = await updateChangelog(changelogContent, version, config.destination)
+    logger.debug(`Wrote ${bytesWritten} bytes to ${config.destination}`)
+    const cleared = await clearSources(config.source)
+    logger.debug(`Cleared ${cleared.length} source files:`)
+      .inspect(cleared, true)
+  }
+  logger.success(`Updated ${chalk.cyan(config.destination)}`)
+
+  logger.debug(`Bumping version from ${currentVersion} -> ${version}...`)
+
+  await bumpPackageJson(version)
+  logger.success(`Bumped package.json`)
+
+  // Run version bump replacements
+  await Promise.all(Object.keys(config.bump).map(async (bumpPath) => {
+    const replacement = config.bump[bumpPath]
+    if (!dryRun) {
+      const bumpCount = await bumpVersion(bumpPath, config.bump[bumpPath], currentVersion, version)
+      logger.success(`Bumped ${bumpCount} version string${bumpCount === 1 ? '' : 's'} in ${chalk.cyan(bumpPath)}`)
     }
+  }))
 
-    const version = argv._[0]
-
-    // Resolve config
-    const config = await getConfig(argv)
-
-    // Get changelog source data
-    const data = await loadSources(config)
-    const markdown = generateMarkdown(version, data)
-    await updateChangelog(version, markdown, config)
-    console.log(`wrote ${chalk.green(markdown.split('\n').length)} lines to ${chalk.cyan(config.destination)}`)
-  } catch (err) {
-    error(err)
-  }
+  return 0
 }
 
-main(argv)
+run(main, helpText)

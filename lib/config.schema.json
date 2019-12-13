@@ -1,0 +1,29 @@
+{
+  "type": "object",
+  "properties": {
+    "source": {
+      "description": "Path to changelog source directory",
+      "type": "string",
+      "default": "`${process.cwd()}/resources/changelog`"
+    },
+    "destination": {
+      "decription": "Path to CHANGELOG.md",
+      "type": "string",
+      "default": "`${process.cwd()}/CHANGELOG.md"
+    },
+    "bump": {
+      "description": "Hash of files and replacement patterns for version bumping",
+      "type": "object",
+      "patternProperties": {
+        "^\\/?([a-zA-Z0-9\\. \\-_]+\/)*[a-zA-Z0-9\\. \\-_]+$": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
