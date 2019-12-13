@@ -55,17 +55,11 @@ const main = async (argv, config) => {
 
   // Write to CHANGELOG.md
   if (!dryRun) {
-    const changelogUpdated = await updateChangelog(changelogContent, config.destination)
-  } else {
-    const changelogUpdated = false
-  }
-
-  logger.success(`Updated ${chalk.magenta(config.destination)}`)
-
-  // If successful, remove changelog source files
-  if (changelogUpdated) {
+    const bytesWritten = await updateChangelog(changelogContent, version, config.destination)
+    logger.debug(`Wrote ${bytesWritten} bytes to ${config.destination}`)
     await clearSources(config.source)
   }
+  logger.success(`Updated ${chalk.magenta(config.destination)}`)
 
   logger.message(`Version bumping coming soon...`)
 
