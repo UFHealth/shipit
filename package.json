@@ -29,7 +29,8 @@
     "jest": "^24.9.0"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "shipit": "node bin/shipit.js"
   },
   "jest": {
     "verbose": true,
