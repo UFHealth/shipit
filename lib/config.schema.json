@@ -15,7 +15,7 @@
       "description": "Hash of files and replacement patterns for version bumping",
       "type": "object",
       "patternProperties": {
-        "^\\/?([a-z0-9\\. \\-_]+\/)*[a-z0-9\\. \\-_]+$": {
+        "^\\/?([a-zA-Z0-9\\. \\-_]+\/)*[a-zA-Z0-9\\. \\-_]+$": {
           "type": "array",
           "items": {
             "type": "string"

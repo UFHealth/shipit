@@ -8,6 +8,7 @@ const {
 } = require('../lib/cli-helpers')
 
 const {
+  bumpPackageJson,
   bumpVersion,
   clearSources,
   generateMarkdown,
@@ -44,6 +45,12 @@ const main = async (argv, config) => {
   const debug = argv.debug || false
   const dryRun = argv['dry-run'] || false
 
+  // Find current package version
+  const currentVersion = await getCurrentVersion()
+  if (currentVersion === version) {
+    throw new Error(`${version} is the current version tho`)
+  }
+
   // Extract changelog data
   const loggedChanges = await parseSources(config.source)
   logger.debug(`Changes:`)
@@ -57,26 +64,24 @@ const main = async (argv, config) => {
   if (!dryRun) {
     const bytesWritten = await updateChangelog(changelogContent, version, config.destination)
     logger.debug(`Wrote ${bytesWritten} bytes to ${config.destination}`)
-    await clearSources(config.source)
+    const cleared = await clearSources(config.source)
+    logger.debug(`Cleared ${cleared.length} source files:`)
+      .inspect(cleared, true)
   }
-  logger.success(`Updated ${chalk.magenta(config.destination)}`)
+  logger.success(`Updated ${chalk.cyan(config.destination)}`)
 
-  logger.message(`Version bumping coming soon...`)
-
-  return 0
-  // ---
-
-  // Find current package version
-  const currentVersion = await getCurrentVersion()
   logger.debug(`Bumping version from ${currentVersion} -> ${version}...`)
+
+  await bumpPackageJson(version)
+  logger.success(`Bumped package.json`)
 
   // Run version bump replacements
   await Promise.all(Object.keys(config.bump).map(async (bumpPath) => {
     const replacement = config.bump[bumpPath]
     if (!dryRun) {
-      await bumpVersion(bumpPath, config.bump[bumpPath], currentVersion, version)
+      const bumpCount = await bumpVersion(bumpPath, config.bump[bumpPath], currentVersion, version)
+      logger.success(`Bumped ${bumpCount} version string${bumpCount === 1 ? '' : 's'} in ${chalk.cyan(bumpPath)}`)
     }
-    logger.success(`Bumped version in ${chalk.magenta(bumpPath)}`)
   }))
 
   return 0
