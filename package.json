@@ -8,7 +8,6 @@
     "Kyle Tucker <k.tucker@ufl.edu>"
   ],
   "bin": {
-    "logit": "./bin/logit.js",
     "shipit": "./bin/shipit.js"
   },
   "dependencies": {
