@@ -1,6 +1,6 @@
 {
   "name": "@ufhealth/shipit",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Release stuff real easy",
   "license": "MIT",
   "author": "UFHealth Web Services <webservices@ahc.ufl.edu>",
@@ -29,7 +29,7 @@
   },
   "scripts": {
     "test": "jest",
-    "shipit": "node bin/shipit.js"
+    "self-release": "node bin/shipit.js"
   },
   "jest": {
     "verbose": true,

@@ -1,5 +1,0 @@
-updated:
-  - Removed `logit` command from package until it's implemented.
-
-fixed:
-  - Fixed replacement count logic in version bumping feedback.
