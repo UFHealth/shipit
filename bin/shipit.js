@@ -72,7 +72,9 @@ const main = async (argv, config) => {
 
   logger.debug(`Bumping version from ${currentVersion} -> ${version}...`)
 
-  await bumpPackageJson(version)
+  if (!dryRun) {
+    await bumpPackageJson(version)
+  }
   logger.success(`Bumped package.json`)
 
   // Run version bump replacements
