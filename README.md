@@ -7,7 +7,7 @@
 
 ## Explainit
 
-Shipit helps make releasing stuff easier, but without trying to automate too much. It does two things, explained in way too much detail below.
+`Shipit` helps make releasing stuff easier, but without trying to automate too much. It does two things, explained in way too much detail below.
 
 - **It generates changelog content from YAML files.**
 
@@ -40,7 +40,7 @@ You can [run it](#runit) out of the box with zero config, or configure it for yo
 - Your Markdown changelog is named `CHANGELOG.md` and lives next to your **package.json**
 - The only version string you need to bump is the one in your **package.json**
 
-If that doesn't jive with your project, here's an exhaustive list of `shipit`'s config options. All three of them.
+If that doesn't jive with your project, you can configure it so it does. Just add a `shipit` section in your **package.json**, or add a **.shipitrc** file next to it. Here's an exhaustive list of your options. All three of 'em.
 
 ### source
 Type: `string`  

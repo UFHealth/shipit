@@ -1,5 +1,10 @@
 # CHANGELOG
 
+### 0.2.1
+
+**Fixed**
+- Added missing documentation for config locations.
+
 ### 0.2.0
 
 **New**
