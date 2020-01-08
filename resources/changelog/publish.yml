@@ -1,5 +1,9 @@
 new:
   - Added documentation.
+  - Added full dry-run support for full-file version bumps.
 
 updated:
   - Updated package definition for publishing.
+
+fixed:
+  - Respect dry-run flag when bumping package.json.
