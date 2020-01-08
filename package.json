@@ -24,17 +24,7 @@
     "schema-utils": "^2.6.1",
     "yaml": "^1.7.2"
   },
-  "devDependencies": {
-    "jest": "^24.9.0"
-  },
   "scripts": {
-    "test": "jest",
     "self-release": "node bin/shipit.js"
-  },
-  "jest": {
-    "verbose": true,
-    "testMatch": [
-      "**/test/*.js"
-    ]
   }
 }
