@@ -7,6 +7,10 @@
   "contributors": [
     "Kyle Tucker <k.tucker@ufl.edu>"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ufhealth/shipit"
+  },
   "bin": {
     "shipit": "./bin/shipit.js"
   },
