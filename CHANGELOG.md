@@ -1,5 +1,17 @@
 # CHANGELOG
 
+### 0.2.0
+
+**New**
+- Added documentation.
+- Added full dry-run support for full-file version bumps.
+
+**Updated**
+- Updated package definition for publishing.
+
+**Fixed**
+- Respect dry-run flag when bumping package.json.
+
 ### 0.1.1
 
 **Updated**

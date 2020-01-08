@@ -1,12 +1,16 @@
 {
   "name": "@ufhealth/shipit",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Release stuff real easy",
   "license": "MIT",
   "author": "UFHealth Web Services <webservices@ahc.ufl.edu>",
   "contributors": [
     "Kyle Tucker <k.tucker@ufl.edu>"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ufhealth/shipit"
+  },
   "bin": {
     "shipit": "./bin/shipit.js"
   },
@@ -24,17 +28,7 @@
     "schema-utils": "^2.6.1",
     "yaml": "^1.7.2"
   },
-  "devDependencies": {
-    "jest": "^24.9.0"
-  },
   "scripts": {
-    "test": "jest",
     "self-release": "node bin/shipit.js"
-  },
-  "jest": {
-    "verbose": true,
-    "testMatch": [
-      "**/test/*.js"
-    ]
   }
 }

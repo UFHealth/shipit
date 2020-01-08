@@ -72,16 +72,16 @@ const main = async (argv, config) => {
 
   logger.debug(`Bumping version from ${currentVersion} -> ${version}...`)
 
-  await bumpPackageJson(version)
+  if (!dryRun) {
+    await bumpPackageJson(version)
+  }
   logger.success(`Bumped package.json`)
 
   // Run version bump replacements
   await Promise.all(Object.keys(config.bump).map(async (bumpPath) => {
     const replacement = config.bump[bumpPath]
-    if (!dryRun) {
-      const bumpCount = await bumpVersion(bumpPath, config.bump[bumpPath], currentVersion, version)
-      logger.success(`Bumped ${bumpCount} version string${bumpCount === 1 ? '' : 's'} in ${chalk.cyan(bumpPath)}`)
-    }
+    const bumpCount = await bumpVersion(bumpPath, config.bump[bumpPath], currentVersion, version, dryRun)
+    logger.success(`Bumped ${bumpCount} version string${bumpCount === 1 ? '' : 's'} in ${chalk.cyan(bumpPath)}`)
   }))
 
   return 0
