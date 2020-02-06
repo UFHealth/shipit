@@ -79,6 +79,28 @@ A few caveats:
 - Regular expression stuff is supported, but if you want to use subgroups like `(a|b|c)`, they must be _non-matching_ (i.e. `(?:a|b|c)`).
 - Currently only one `<version>` placeholder per pattern is supported, so if you need to replace multiple version references in the same line, you'll have to use either regex voodoo or more than one pattern.
 
+### Changelog Category Reference
+
+Available categories:
+
+**new**: notes on new features
+
+**updated**: notes on feature enhancements 
+
+**fixed**: notes on bug fixes
+
+**external**: notes that will provided as a non-technical changelog to end users -- *do not use technical jargon here!*
+
+Format for writing changelog notes:
+```yml
+new:
+  - New thing 1
+  - New thing 2
+
+external:
+  - Thing 1 and Thing 2 are now ready to be used!
+```
+*Note:* You can omit any category, as long as you have one you are good to go!
 
 ## Runit
 
