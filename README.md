@@ -82,9 +82,13 @@ A few caveats:
 ### Changelog Category Reference
 
 Available categories:
+
 **new**: notes on new features
+
 **updated**: notes on feature enhancements 
+
 **fixed**: notes on bug fixes
+
 **external**: notes that will provided as a non-technical changelog to end users -- *do not use technical jargon here!*
 
 Format for writing changelog notes:
