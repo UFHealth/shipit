@@ -30,9 +30,10 @@ const helpText = `
     version  The next version of your package.
 
   Options:
-    --help     Display this help message.
-    --version  Print the current shipit version.
-    --dry-run  See what would happen if you ran this command IRL.
+    --dry-run          See what would happen if you ran this command IRL.
+    --generate=<name>  Generate a YAML file for logging your changes.
+    --help             Display this help message.
+    --version          Print the current shipit version.
 `
 
 const main = async (argv, config) => {
