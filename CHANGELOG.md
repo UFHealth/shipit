@@ -1,5 +1,16 @@
 # CHANGELOG
 
+### 0.3.0 - 02/06/2020
+
+**New**
+- Added `--generate` option for generating YAML files from the provided `template.yml`.
+- Added docs for YAML formatting and categories.
+- Added 'External' category for jargon-free changelog notes.
+
+**Updated**
+- Added a better error message for missing changelog when version bumping.
+- Added date stamps when generating the header for CHANGELOG content.
+
 ### 0.2.1
 
 **Fixed**
