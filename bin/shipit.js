@@ -15,6 +15,7 @@ const {
   getCurrentVersion,
   parseSources,
   updateChangelog,
+  generateLogYml
 } = require('../lib/api')
 
 // ---------------------------------------------------------------------------------------------
@@ -35,6 +36,13 @@ const helpText = `
 `
 
 const main = async (argv, config) => {
+  const generate = argv.generate || false
+
+  if (generate) {
+    await generateLogYml(generate, config)
+    return
+  }
+
   // Grab version
   const version = argv._[0] || false
   if (!version) {
