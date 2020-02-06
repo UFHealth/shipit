@@ -1,0 +1,8 @@
+new:
+  - Added Generator for creating changelog notes
+  - Added changelog template.yml for use with generator
+  - Added reference in docs for changelog formatting and categories
+  - Added 'External' category for jargon-free changelog notes
+
+updated:
+  - Error messages for missing changelog when version bumping
