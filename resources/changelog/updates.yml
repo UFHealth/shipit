@@ -1,8 +1,8 @@
 new:
-  - Added Generator for creating changelog notes
-  - Added changelog template.yml for use with generator
-  - Added reference in docs for changelog formatting and categories
-  - Added 'External' category for jargon-free changelog notes
+  - Added `--generate` option for generating YAML files from the provided `template.yml`.
+  - Added docs for YAML formatting and categories.
+  - Added 'External' category for jargon-free changelog notes.
 
 updated:
-  - Error messages for missing changelog when version bumping
+  - Added a better error message for missing changelog when version bumping.
+  - Added date stamps when generating the header for CHANGELOG content.
