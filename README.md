@@ -114,6 +114,7 @@ Arguments:
 Options:
   --help     Display this help message.
   --version  Print the current shipit version.
+  --generate=<name>  Generate a YAML file for logging your changes.
   --dry-run  See what would happen if you ran this command IRL.
 ```
 
