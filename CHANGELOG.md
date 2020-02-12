@@ -1,5 +1,10 @@
 # CHANGELOG
 
+### 0.3.1 - 02/12/2020
+
+**Fixed**
+- Fix relative path to generator template
+
 ### 0.3.0 - 02/06/2020
 
 **New**
