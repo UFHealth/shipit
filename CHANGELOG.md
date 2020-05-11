@@ -1,5 +1,16 @@
 # CHANGELOG
 
+
+<h2 class="ReleaseVersion">0.3.2</h2>
+
+<p class="ReleaseDate">
+  <time datetime="2020-05-11T16:52:11.588Z">05/11/2020</time>
+</p>
+
+
+### Updated
+- Added heading and date markup to changelog
+
 ### 0.3.1 - 02/12/2020
 
 **Fixed**
