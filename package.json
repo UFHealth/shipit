@@ -1,6 +1,6 @@
 {
   "name": "@ufhealth/shipit",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Release stuff real easy",
   "license": "MIT",
   "author": "UFHealth Web Services <webservices@ahc.ufl.edu>",
