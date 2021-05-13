@@ -1,6 +1,17 @@
 # CHANGELOG
 
 
+<h2 class="ReleaseVersion">0.3.3</h2>
+
+<p class="ReleaseDate">
+  <time datetime="2021-05-13T13:55:17.592Z">05/13/2021</time>
+</p>
+
+
+### Fixed
+- Patched `y18n` and `yargs-parser` (dependabot)
+
+
 <h2 class="ReleaseVersion">0.3.2</h2>
 
 <p class="ReleaseDate">
