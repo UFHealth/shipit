@@ -8,7 +8,7 @@ const {
 } = require('../lib/cli-helpers')
 
 const {
-  bumpPackageJson,
+  bumpPackageFiles,
   bumpVersion,
   clearSources,
   generateMarkdown,
@@ -82,9 +82,9 @@ const main = async (argv, config) => {
   logger.debug(`Bumping version from ${currentVersion} -> ${version}...`)
 
   if (!dryRun) {
-    await bumpPackageJson(version)
+    await bumpPackageFiles(version)
   }
-  logger.success(`Bumped package.json`)
+  logger.success(`Bumped package.json (and package-lock.json if it exists)`)
 
   // Run version bump replacements
   await Promise.all(Object.keys(config.bump).map(async (bumpPath) => {
