@@ -1,2 +1,0 @@
-new:
-  - Bumping process now also updates `package-lock.json`, if it exists in your project.
