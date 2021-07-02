@@ -1,6 +1,26 @@
 # CHANGELOG
 
 
+<h2 class="ReleaseVersion">0.3.4</h2>
+
+<p class="ReleaseDate">
+  <time datetime="2021-07-02T14:24:59.937Z">07/02/2021</time>
+</p>
+
+
+### New
+- Notes
+
+### Updated
+- Notes
+
+### Fixed
+- Notes
+
+### Notes for humans
+- Notes
+
+
 <h2 class="ReleaseVersion">0.3.3</h2>
 
 <p class="ReleaseDate">
