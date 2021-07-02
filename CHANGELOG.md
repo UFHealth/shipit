@@ -1,6 +1,20 @@
 # CHANGELOG
 
 
+<h2 class="ReleaseVersion">0.4.1</h2>
+
+<p class="ReleaseDate">
+  <time datetime="2021-07-02T15:06:17.182Z">07/02/2021</time>
+</p>
+
+
+### New
+- Added info message to output showing current/new version and indicating dry-run state.
+
+### Fixed
+- Fixed `package-lock` bump to update "root" package version too.
+
+
 <h2 class="ReleaseVersion">0.4.0</h2>
 
 <p class="ReleaseDate">
