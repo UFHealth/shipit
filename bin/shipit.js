@@ -60,6 +60,8 @@ const main = async (argv, config) => {
     throw new Error(`${version} is the current version tho`)
   }
 
+  logger.info(`${dryRun ? 'Pretending to bump' : 'Bumping'} package from ${chalk.blue(currentVersion)} → ${chalk.green.bold(version)}...\n`)
+
   // Extract changelog data
   const loggedChanges = await parseSources(config.source)
   logger.debug(`Changes:`)
@@ -78,8 +80,6 @@ const main = async (argv, config) => {
       .inspect(cleared, true)
   }
   logger.success(`Updated ${chalk.cyan(config.destination)}`)
-
-  logger.debug(`Bumping version from ${currentVersion} -> ${version}...`)
 
   if (!dryRun) {
     await bumpPackageFiles(version)
